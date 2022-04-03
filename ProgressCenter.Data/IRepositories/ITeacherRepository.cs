@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ProgressCenter.Domain.Entities.Teachers;
 
 namespace ProgressCenter.Data.IRepositories
 {
-    public interface ITeacherRepository
+    public interface ITeacherRepository : IGenericRepository<Teacher>
     {
     }
 }

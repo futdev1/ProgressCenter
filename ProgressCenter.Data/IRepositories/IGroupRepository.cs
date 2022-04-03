@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text.RegularExpressions;
 
 namespace ProgressCenter.Data.IRepositories
 {
-    public interface IGroupRepository
+    public interface IGroupRepository : IGenericRepository<Group>
     {
     }
 }
