@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProgressCenter.Service.Services
 {
-    internal class GroupService
+    public class GroupService
     {
     }
 }

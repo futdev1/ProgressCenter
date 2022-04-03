@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ProgressCenter.Service.Services
 {
-    internal class TeacherService
+    public class TeacherService
     {
+
     }
 }

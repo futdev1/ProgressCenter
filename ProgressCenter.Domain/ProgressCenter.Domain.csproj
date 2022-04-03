@@ -4,12 +4,4 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Entities\Groups\" />
-    <Folder Include="Entities\Courses\" />
-    <Folder Include="Entities\Employees\" />
-    <Folder Include="Entities\Teachers\" />
-    <Folder Include="Entities\Students\" />
-  </ItemGroup>
-
 </Project>

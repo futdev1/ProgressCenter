@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProgressCenter.Service.Services
+namespace ProgressCenter.Data.Repositories
 {
-    public class EmployeeService
+    internal class TeacherRepository
     {
     }
 }
