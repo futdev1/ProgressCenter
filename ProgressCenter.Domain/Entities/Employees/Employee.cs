@@ -21,9 +21,37 @@ namespace ProgressCenter.Domain.Entities.Employees
 
         public String CardNumber { get; set; }
 
+        public String Email { get; set; }
+
+        public String Login { get; set; }
+
+        public String Password { get; set; }
+
+        public byte[] Image { get; set; }
+
         public DateTime CreatedAt { get; set; }
+        
         public DateTime? UpdatedAt { get; set; }
+        
         public Int64? UpdatedBy { get; set; }
+        
         public ItemState State { get; set; }
+
+        public void Create()
+        {
+            CreatedAt = DateTime.Now;
+            State = ItemState.Created;
+        }
+
+        public void Update()
+        {
+            UpdatedAt = DateTime.Now;
+            State = ItemState.Updated;
+        }
+
+        public void Delete()
+        {
+            State = ItemState.Deleted;
+        }
     }
 }
