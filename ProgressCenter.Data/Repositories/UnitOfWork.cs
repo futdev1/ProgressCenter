@@ -35,7 +35,7 @@ namespace ProgressCenter.Data.Repositories
                 .WriteTo.File
                 (
                     path: "Logs/logs.txt",
-                    outputTemplate: config.GetSection("Serilog:OutputTemlate").Value,
+                    outputTemplate: config.GetSection("Serilog:OutputTemplate").Value,
                     rollingInterval: RollingInterval.Day,
                     restrictedToMinimumLevel: LogEventLevel.Information
                 ).CreateLogger();
