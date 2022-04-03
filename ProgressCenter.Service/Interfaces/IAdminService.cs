@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProgressCenter.Service.Services
+namespace ProgressCenter.Service.Interfaces
 {
-    public class EmployeeService
+    public interface IAdminService
     {
     }
 }

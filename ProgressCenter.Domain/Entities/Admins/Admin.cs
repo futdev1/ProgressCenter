@@ -2,11 +2,11 @@
 using ProgressCenter.Domain.Enums;
 using System;
 
-namespace ProgressCenter.Domain.Entities.Teachers
+namespace ProgressCenter.Domain.Entities.Admins
 {
-    public class Teacher : IAuditable
+    public class Admin : IAuditable
     {
-        public Int64 Id { get; set; }
+        public long Id { get; set; }
 
         public String FirstName { get; set; }
 
@@ -30,25 +30,8 @@ namespace ProgressCenter.Domain.Entities.Teachers
 
         public DateTime? UpdatedAt { get; set; }
         
-        public Int64? UpdatedBy { get; set; }
+        public long? UpdatedBy { get; set; }
         
         public ItemState State { get; set; }
-
-        public void Create()
-        {
-            CreatedAt = DateTime.Now;
-            State = ItemState.Created;
-        }
-
-        public void Update()
-        {
-            UpdatedAt = DateTime.Now;
-            State = ItemState.Updated;
-        }
-
-        public void Delete()
-        {
-            State = ItemState.Deleted;
-        }
     }
 }

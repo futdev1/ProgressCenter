@@ -22,7 +22,7 @@ namespace ProgressCenter.Domain.Entities.Students
 
         public String Password { get; set; }
 
-        public byte[] Image { get; set; }
+        public string Image { get; set; }
 
         public long GroupId { get; set; }
 
