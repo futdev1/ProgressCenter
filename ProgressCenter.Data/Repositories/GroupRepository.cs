@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ProgressCenter.Data.Contexts;
+using ProgressCenter.Data.IRepositories;
+using System.Text.RegularExpressions;
 
 namespace ProgressCenter.Data.Repositories
 {
-    public class GroupRepository
+    public class GroupRepository : GenericRepository<Group>, IGroupRepository
     {
+        public GroupRepository(ProgressCenterDbContext dbCnotext) : base(dbCnotext) { }
     }
 }

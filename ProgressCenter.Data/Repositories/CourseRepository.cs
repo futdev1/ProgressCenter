@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ProgressCenter.Data.Contexts;
+using ProgressCenter.Data.IRepositories;
+using ProgressCenter.Domain.Entities.Courses;
 
 namespace ProgressCenter.Data.Repositories
 {
-    public class CourseRepository
+    public class CourseRepository : GenericRepository<Course>, ICourseRepository 
     {
+        public CourseRepository(ProgressCenterDbContext dbContext) : base(dbContext) { }
     }
 }

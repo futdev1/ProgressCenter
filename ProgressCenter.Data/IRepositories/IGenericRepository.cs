@@ -19,7 +19,7 @@ namespace ProgressCenter.Data.IRepositories
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        Task<T> UpdateAsync(T entity);
+        T UpdateAsync(T entity);
 
         /// <summary>
         ///  deletes the data in the database
@@ -33,7 +33,7 @@ namespace ProgressCenter.Data.IRepositories
         /// </summary>
         /// <param name="pred"></param>
         /// <returns></returns>
-        Task<IQueryable<T>> GetAllAsync(Expression<Func<T, bool>> pred = null);
+        IQueryable<T> GetAll(Expression<Func<T, bool>> pred = null);
 
         /// <summary>
         /// returns data from the database
