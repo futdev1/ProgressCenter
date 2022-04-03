@@ -5,7 +5,9 @@ using ProgressCenter.Data.IRepositories;
 using ProgressCenter.Domain.Commons;
 using ProgressCenter.Domain.Configurations;
 using ProgressCenter.Domain.Entities.Admins;
+using ProgressCenter.Domain.Enums;
 using ProgressCenter.Service.DTOs.Admins;
+using ProgressCenter.Service.Extensions;
 using ProgressCenter.Service.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -56,29 +58,98 @@ namespace ProgressCenter.Service.Services
             return response;
         }
 
-        public Task<BaseResponse<bool>> DeleteAsync(Expression<Func<Admin, bool>> expression)
+        public async Task<BaseResponse<bool>> DeleteAsync(Expression<Func<Admin, bool>> expression)
         {
-            throw new NotImplementedException();
+            var response = new BaseResponse<bool>();
+
+            // check for exist student
+            var existAdmin = await unitOfWork.Admins.GetAsync(expression);
+            if (existAdmin is null)
+            {
+                response.Error = new ErrorResponse(404, "User not found");
+                return response;
+            }
+            existAdmin.Delete();
+
+            var result = unitOfWork.Admins.UpdateAsync(existAdmin);
+
+            await unitOfWork.SaveChangesAsync();
+
+            response.Data = true;
+
+            return response;
         }
 
-        public Task<BaseResponse<IEnumerable<Admin>>> GetAllAsync(PaginationParams @params, Expression<Func<Admin, bool>> expression = null)
+        public async Task<BaseResponse<IEnumerable<Admin>>> GetAllAsync(PaginationParams @params, Expression<Func<Admin, bool>> expression = null)
         {
-            throw new NotImplementedException();
+            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+            var response = new BaseResponse<IEnumerable<Admin>>();
+
+            var students = unitOfWork.Admins.GetAll(expression);
+
+            response.Data = students.ToPagedList(@params);
+
+            return response;
         }
 
-        public Task<BaseResponse<Admin>> GetAsync(Expression<Func<Admin, bool>> expression)
+        public async Task<BaseResponse<Admin>> GetAsync(Expression<Func<Admin, bool>> expression)
         {
-            throw new NotImplementedException();
+            var response = new BaseResponse<Admin>();
+
+            var student = await unitOfWork.Admins.GetAsync(expression);
+            if (student is null)
+            {
+                response.Error = new ErrorResponse(404, "User not found");
+                return response;
+            }
+
+            response.Data = student;
+
+            return response;
         }
 
-        public Task<string> SaveFileAsync(Stream file, string fileName)
+        public async Task<string> SaveFileAsync(Stream file, string fileName)
         {
-            throw new NotImplementedException();
+            fileName = Guid.NewGuid().ToString("N") + "_" + fileName;
+            string storagePath = config.GetSection("Storage:ImageUrl").Value;
+            string filePath = Path.Combine(env.WebRootPath, $"{storagePath}/{fileName}");
+            FileStream mainFile = File.Create(filePath);
+            await file.CopyToAsync(mainFile);
+            mainFile.Close();
+
+            return fileName;
         }
 
-        public Task<BaseResponse<Admin>> UpdateAsync(long id, AdminForCreationDto adminDto)
+        public async Task<BaseResponse<Admin>> UpdateAsync(long id, AdminForCreationDto adminDto)
         {
-            throw new NotImplementedException();
+            var response = new BaseResponse<Admin>();
+
+            // check for exist student
+            var admin = await unitOfWork.Admins.GetAsync(p => p.Id == id && p.State != ItemState.Deleted);
+            if (admin is null)
+            {
+                response.Error = new ErrorResponse(404, "User not found");
+                return response;
+            }
+
+            admin.FirstName = adminDto.FirstName;
+            admin.LastName = adminDto.LastName;
+            admin.PhoneNumber = adminDto.PhoneNumber;
+            admin.CardNumber = adminDto.CardNumber;
+            admin.Email = adminDto.Email;
+            admin.Login = adminDto.Login;
+            admin.Password = adminDto.Password;
+            admin.DateOfBirth = adminDto.DateOfBirth;
+            admin.Update();
+
+            var result = unitOfWork.Admins.UpdateAsync(admin);
+
+            await unitOfWork.SaveChangesAsync();
+
+            response.Data = result;
+
+            return response;
         }
     }
 }
