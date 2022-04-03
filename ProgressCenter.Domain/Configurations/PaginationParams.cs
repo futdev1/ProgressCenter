@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProgressCenter.Domain.Configurations
 {
-    internal class PaginationParams
+    public class PaginationParams
     {
     }
 }

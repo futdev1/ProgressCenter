@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProgressCenter.Data.Contexts
 {
-    internal class ProgressCenterDbContext
+    public class ProgressCenterDbContext
     {
     }
 }

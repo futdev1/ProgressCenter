@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProgressCenter.Domain.Enums
 {
-    internal class ItemState
+    public enum ItemState
     {
     }
 }
