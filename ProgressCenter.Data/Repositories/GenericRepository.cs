@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProgressCenter.Data.Contexts;
 using ProgressCenter.Data.IRepositories;
+using Serilog;
 using System;
 using System.Linq;
 using System.Linq.Expressions;
@@ -13,10 +14,12 @@ namespace ProgressCenter.Data.Repositories
     {
         internal readonly ProgressCenterDbContext dbContext;
         internal readonly DbSet<T> dbSet;
+        internal readonly ILogger logger;   
 
-        public GenericRepository(ProgressCenterDbContext dbContext)
+        public GenericRepository(ProgressCenterDbContext dbContext, ILogger logger)
         {
             this.dbContext = dbContext;
+            this.logger = logger;
             this.dbSet = dbContext.Set<T>();
         }
 
