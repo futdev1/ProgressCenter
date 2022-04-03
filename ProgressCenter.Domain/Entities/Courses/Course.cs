@@ -6,9 +6,9 @@ namespace ProgressCenter.Domain.Entities.Courses
 {
     public class Course : IAuditable
     {
-        public Int64 Id { get; set; }
+        public long Id { get; set; }
 
-        public String Name { get; set; }
+        public string Name { get; set; }
 
         public DateTime PeriodOfDuration { get; set; }
 
@@ -16,7 +16,7 @@ namespace ProgressCenter.Domain.Entities.Courses
         
         public DateTime? UpdatedAt { get; set; }
         
-        public Int64? UpdatedBy { get; set; }
+        public long? UpdatedBy { get; set; }
         
         public ItemState State { get; set; }
 

@@ -30,9 +30,33 @@ namespace ProgressCenter.Service.Services
             this.config = config;
         }
 
-        public Task<BaseResponse<Admin>> CreateAsync(AdminForCreationDto adminDto)
+        public async Task<BaseResponse<Admin>> CreateAsync(AdminForCreationDto adminDto)
         {
-               
+            var response = new BaseResponse<Admin>();
+
+            // check for student
+            var existStudent = await unitOfWork.Admins.GetAsync(p => p.Login == adminDto.Login);
+            if (existStudent is not null)
+            {
+                response.Error = new ErrorResponse(400, "User is exist");
+                return response;
+            }
+
+            // create after checking success
+            var mappedAdmin = mapper.Map<Admin>(adminDto);
+
+            // save image from dto model to wwwroot
+            mappedAdmin.Image = await SaveFileAsync(adminDto.Image.OpenReadStream(), adminDto.Image.FileName);
+
+            var result = await unitOfWork.Admins.CreateAsync(mappedAdmin);
+
+            result.Image = "https://localhost:5001/Images/" + result.Image;
+
+            await unitOfWork.SaveChangesAsync();
+
+            response.Data = result;
+
+            return response;
         }
 
         public Task<BaseResponse<bool>> DeleteAsync(Expression<Func<Admin, bool>> expression)
@@ -55,7 +79,7 @@ namespace ProgressCenter.Service.Services
             throw new NotImplementedException();
         }
 
-        public Task<BaseResponse<Admin>> UpdateAsync(Guid id, AdminForCreationDto adminDto)
+        public Task<BaseResponse<Admin>> UpdateAsync(long id, AdminForCreationDto adminDto)
         {
             throw new NotImplementedException();
         }

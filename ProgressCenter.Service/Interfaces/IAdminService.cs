@@ -5,9 +5,7 @@ using ProgressCenter.Service.DTOs.Admins;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ProgressCenter.Service.Interfaces
@@ -18,7 +16,7 @@ namespace ProgressCenter.Service.Interfaces
         Task<BaseResponse<Admin>> GetAsync(Expression<Func<Admin, bool>> expression);
         Task<BaseResponse<IEnumerable<Admin>>> GetAllAsync(PaginationParams @params, Expression<Func<Admin, bool>> expression = null);
         Task<BaseResponse<bool>> DeleteAsync(Expression<Func<Admin, bool>> expression);
-        Task<BaseResponse<Admin>> UpdateAsync(Guid id, AdminForCreationDto adminDto);
+        Task<BaseResponse<Admin>> UpdateAsync(long id, AdminForCreationDto adminDto);
 
         Task<string> SaveFileAsync(Stream file, string fileName);
     }

@@ -1,14 +1,17 @@
-﻿using Microsoft.AspNetCore.Http;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace ProgressCenter.Service.DTOs.Admins
+namespace ProgressCenter.Service.DTOs.Students
 {
-    public class AdminForCreationDto
+    public class StudentForCreationDto
     {
         [Required]
         public string FirstName { get; set; }
-        
+
         [Required]
         public string LastName { get; set; }
 
@@ -16,20 +19,19 @@ namespace ProgressCenter.Service.DTOs.Admins
         public string PhoneNumber { get; set; }
 
         [Required]
-        public string CardNumber { get; set; }
-
-        [Required]
         public DateTime DateOfBirth { get; set; }
 
         public string Email { get; set; }
-        
+
         [Required]
         public string Login { get; set; }
 
         [Required]
         public string Password { get; set; }
 
+        public string Image { get; set; }
+
         [Required]
-        public IFormFile Image { get; set; }
+        public long GroupId { get; set; }
     }
 }

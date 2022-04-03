@@ -2,10 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using ProgressCenter.Domain.Commons;
 using ProgressCenter.Domain.Configurations;
-using ProgressCenter.Domain.Entities.Students;
+using ProgressCenter.Domain.Entities.Admins;
 using ProgressCenter.Domain.Enums;
-using ProgressCenter.Service.DTOs.Students;
+using ProgressCenter.Service.DTOs.Admins;
 using ProgressCenter.Service.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -13,45 +14,44 @@ namespace ProgressCenter.Api.Controllers
 {
     [ApiController]
     [Route("Api/[controller]")]
-    public class StudentsController : ControllerBase
+    public class AdminsController : ControllerBase
     {
-        private readonly IStudentService studentService;
+        private readonly IAdminService adminService;
         private readonly IWebHostEnvironment env;
-
-        public StudentsController(IStudentService sroupService, IWebHostEnvironment env)
+        public AdminsController(IAdminService adminService, IWebHostEnvironment env)
         {
-            this.studentService = sroupService;
+            this.adminService = adminService;
             this.env = env;
         }
 
         [HttpPost]
-        public async Task<ActionResult<BaseResponse<Student>>> Create([FromForm] StudentForCreationDto StudentDto)
+        public async Task<ActionResult<BaseResponse<Admin>>> Create([FromForm] AdminForCreationDto adminDto)
         {
-            var result = await studentService.CreateAsync(StudentDto);
+            var result = await adminService.CreateAsync(adminDto);
 
             return StatusCode(result.Code ?? result.Error.Code.Value, result);
         }
 
         [HttpGet]
-        public async Task<ActionResult<BaseResponse<IEnumerable<Student>>>> GetAll([FromQuery] PaginationParams @params)
+        public async Task<ActionResult<BaseResponse<IEnumerable<Admin>>>> GetAll([FromQuery] PaginationParams @params)
         {
-            var result = await studentService.GetAllAsync(@params);
+            var result = await adminService.GetAllAsync(@params);
 
             return StatusCode(result.Code ?? result.Error.Code.Value, result);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<BaseResponse<Student>>> Get([FromRoute] long id)
+        public async Task<ActionResult<BaseResponse<Admin>>> Get([FromRoute] long id)
         {
-            var result = await studentService.GetAsync(p => p.Id == id);
+            var result = await adminService.GetAsync(p => p.Id == id);
 
             return StatusCode(result.Code ?? result.Error.Code.Value, result);
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<BaseResponse<Student>>> Update(long id, StudentForCreationDto StudentDto)
+        public async Task<ActionResult<BaseResponse<Admin>>> Update(long id, AdminForCreationDto adminDto)
         {
-            var result = await studentService.UpdateAsync(id, StudentDto);
+            var result = await adminService.UpdateAsync(id, adminDto);
 
             return StatusCode(result.Code ?? result.Error.Code.Value, result);
         }
@@ -59,7 +59,7 @@ namespace ProgressCenter.Api.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<BaseResponse<bool>>> Delete(long id)
         {
-            var result = await studentService.DeleteAsync(p => p.Id == id && p.State != ItemState.Deleted);
+            var result = await adminService.DeleteAsync(p => p.Id == id && p.State != ItemState.Deleted);
 
             return StatusCode(result.Code ?? result.Error.Code.Value, result);
         }

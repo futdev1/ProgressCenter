@@ -8,21 +8,21 @@ namespace ProgressCenter.Domain.Entities.Admins
     {
         public long Id { get; set; }
 
-        public String FirstName { get; set; }
+        public string FirstName { get; set; }
 
-        public String LastName { get; set; }
+        public string LastName { get; set; }
 
-        public String PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
 
-        public String CardNumber { get; set; }
+        public string CardNumber { get; set; }
 
         public DateTime DateOfBirth { get; set; }
 
-        public String Email { get; set; }
+        public string Email { get; set; }
 
-        public String Login { get; set; }
+        public string Login { get; set; }
 
-        public String Password { get; set; }
+        public string Password { get; set; }
 
         public string Image { get; set; }
 
@@ -33,5 +33,22 @@ namespace ProgressCenter.Domain.Entities.Admins
         public long? UpdatedBy { get; set; }
         
         public ItemState State { get; set; }
+
+        public void Create()
+        {
+            CreatedAt = DateTime.Now;
+            State = ItemState.Created;
+        }
+
+        public void Update()
+        {
+            UpdatedAt = DateTime.Now;
+            State = ItemState.Updated;
+        }
+
+        public void Delete()
+        {
+            State = ItemState.Deleted;
+        }
     }
 }
