@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProgressCenter.Domain.Commons
 {
-    internal class IAuditable
+    public class IAuditable
     {
     }
 }

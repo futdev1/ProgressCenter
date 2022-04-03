@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProgressCenter.Service.Extensions
 {
-    internal class CollectionExtensions
+    public class CollectionExtensions
     {
     }
 }

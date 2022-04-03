@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProgressCenter.Service.Helpers
 {
-    internal class HttpContextHelper
+    public class HttpContextHelper
     {
     }
 }

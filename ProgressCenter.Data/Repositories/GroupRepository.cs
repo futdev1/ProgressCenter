@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProgressCenter.Data.Repositories
 {
-    internal class GroupRepository
+    public class GroupRepository
     {
     }
 }

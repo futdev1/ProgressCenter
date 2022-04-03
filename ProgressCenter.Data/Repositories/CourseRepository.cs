@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProgressCenter.Data.Repositories
 {
-    internal class CourseRepository
+    public class CourseRepository
     {
     }
 }
