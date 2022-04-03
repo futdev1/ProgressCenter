@@ -34,7 +34,6 @@ namespace ProgressCenter.Service.Services
         {
             var response = new BaseResponse<Admin>();
 
-            // check for student
             var existStudent = await unitOfWork.Admins.GetAsync(p => p.Login == adminDto.Login);
             if (existStudent is not null)
             {
@@ -42,10 +41,8 @@ namespace ProgressCenter.Service.Services
                 return response;
             }
 
-            // create after checking success
             var mappedAdmin = mapper.Map<Admin>(adminDto);
 
-            // save image from dto model to wwwroot
             mappedAdmin.Image = await SaveFileAsync(adminDto.Image.OpenReadStream(), adminDto.Image.FileName);
 
             var result = await unitOfWork.Admins.CreateAsync(mappedAdmin);
