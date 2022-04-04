@@ -131,6 +131,7 @@ namespace ProgressCenter.Service.Services
             student.DateOfBirth = studentDto.DateOfBirth;
             student.GroupId = studentDto.GroupId;
 
+
             var result = unitOfWork.Students.UpdateAsync(student);
 
             await unitOfWork.SaveChangesAsync();

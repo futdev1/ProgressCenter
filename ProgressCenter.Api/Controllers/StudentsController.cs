@@ -18,16 +18,16 @@ namespace ProgressCenter.Api.Controllers
         private readonly IStudentService studentService;
         private readonly IWebHostEnvironment env;
 
-        public StudentsController(IStudentService sroupService, IWebHostEnvironment env)
+        public StudentsController(IStudentService studentService, IWebHostEnvironment env)
         {
-            this.studentService = sroupService;
+            this.studentService = studentService;
             this.env = env;
         }
 
         [HttpPost]
-        public async Task<ActionResult<BaseResponse<Student>>> Create([FromForm] StudentForCreationDto StudentDto)
+        public async Task<ActionResult<BaseResponse<Student>>> Create([FromForm] StudentForCreationDto studentDto)
         {
-            var result = await studentService.CreateAsync(StudentDto);
+            var result = await studentService.CreateAsync(studentDto);
 
             return StatusCode(result.Code ?? result.Error.Code.Value, result);
         }
