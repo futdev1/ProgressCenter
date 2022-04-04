@@ -13,6 +13,6 @@ namespace ProgressCenter.Service.DTOs.Courses
         public string Name { get; set; }
 
         [Required]
-        public DateTime PeriodOfDuration { get; set; }
+        public string PeriodOfDuration { get;  set; }
     }
 }

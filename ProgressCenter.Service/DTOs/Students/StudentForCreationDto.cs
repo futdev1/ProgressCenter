@@ -30,7 +30,7 @@ namespace ProgressCenter.Service.DTOs.Students
         [Required]
         public string Password { get; set; }
 
-        public FormFile Image { get; set; }
+        public IFormFile Image { get; set; }
 
         [Required]
         public long GroupId { get; set; }

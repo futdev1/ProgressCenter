@@ -33,6 +33,6 @@ namespace ProgressCenter.Service.DTOs.Teachers
         [Required]
         public string Password { get; set; }
 
-        public FormFile Image { get; set; }
+        public IFormFile Image { get; set; }
     }
 }
