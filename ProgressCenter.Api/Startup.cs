@@ -35,13 +35,17 @@ namespace ProgressCenter.Api
                 options.UseNpgsql(Configuration.GetConnectionString("ProgressCenter"));
             });
 
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ProgressCenter.Api", Version = "v1" });
             });
 
+            services.AddHttpContextAccessor();
+
             services.AddCustomServices();
+            
             services.AddAutoMapper(typeof(MappingProfile));
         }
 
@@ -64,6 +68,18 @@ namespace ProgressCenter.Api
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            // Add static files to the request pipeline.
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                OnPrepareResponse = (context) =>
+                {
+                    // Disable caching of all static files.
+                    context.Context.Response.Headers["Cache-Control"] = "no-cache, no-store";
+                    context.Context.Response.Headers["Pragma"] = "no-cache";
+                    context.Context.Response.Headers["Expires"] = "-1";
+                }
             });
         }
     }

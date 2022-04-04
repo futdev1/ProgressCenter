@@ -1,11 +1,8 @@
 ﻿using Newtonsoft.Json;
 using ProgressCenter.Domain.Configurations;
 using ProgressCenter.Service.Helpers;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProgressCenter.Service.Extensions
 {

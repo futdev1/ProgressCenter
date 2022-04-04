@@ -80,7 +80,7 @@ namespace ProgressCenter.Service.Services
             return response;
         }
 
-        public async Task<BaseResponse<IEnumerable<Admin>>> GetAllAsync(PaginationParams @params, Expression<Func<Admin, bool>> expression = null)
+        public BaseResponse<IEnumerable<Admin>> GetAll(PaginationParams @params, Expression<Func<Admin, bool>> expression = null)
         {
             string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 

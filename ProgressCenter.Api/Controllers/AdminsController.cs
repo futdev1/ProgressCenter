@@ -33,9 +33,9 @@ namespace ProgressCenter.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<BaseResponse<IEnumerable<Admin>>>> GetAll([FromQuery] PaginationParams @params)
+        public ActionResult<BaseResponse<IEnumerable<Admin>>> GetAll([FromQuery] PaginationParams @params)
         {
-            var result = await adminService.GetAllAsync(@params);
+            var result = adminService.GetAll(@params);
 
             return StatusCode(result.Code ?? result.Error.Code.Value, result);
         }

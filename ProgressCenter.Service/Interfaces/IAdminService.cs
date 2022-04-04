@@ -14,7 +14,7 @@ namespace ProgressCenter.Service.Interfaces
     {
         Task<BaseResponse<Admin>> CreateAsync(AdminForCreationDto adminDto);
         Task<BaseResponse<Admin>> GetAsync(Expression<Func<Admin, bool>> expression);
-        Task<BaseResponse<IEnumerable<Admin>>> GetAllAsync(PaginationParams @params, Expression<Func<Admin, bool>> expression = null);
+        BaseResponse<IEnumerable<Admin>> GetAll(PaginationParams @params, Expression<Func<Admin, bool>> expression = null);
         Task<BaseResponse<bool>> DeleteAsync(Expression<Func<Admin, bool>> expression);
         Task<BaseResponse<Admin>> UpdateAsync(long id, AdminForCreationDto adminDto);
 
