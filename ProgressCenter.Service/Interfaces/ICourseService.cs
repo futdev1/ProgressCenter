@@ -15,7 +15,7 @@ namespace ProgressCenter.Service.Interfaces
     {
         Task<BaseResponse<Course>> CreateAsync(CourseForCreationDto CourseDto);
         Task<BaseResponse<Course>> GetAsync(Expression<Func<Course, bool>> expression);
-        Task<BaseResponse<IEnumerable<Course>>> GetAllAsync(PaginationParams @params, Expression<Func<Course, bool>> expression = null);
+        BaseResponse<IEnumerable<Course>> GetAll(PaginationParams @params, Expression<Func<Course, bool>> expression = null);
         Task<BaseResponse<bool>> DeleteAsync(Expression<Func<Course, bool>> expression);
         Task<BaseResponse<Course>> UpdateAsync(long id, CourseForCreationDto CourseDto);
     }

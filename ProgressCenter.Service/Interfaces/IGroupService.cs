@@ -14,9 +14,9 @@ namespace ProgressCenter.Service.Interfaces
 {
     public interface IGroupService
     {
-        Task<BaseResponse<Group>> CreateAsync(GroupForCreationDto GroupDto);
-        Task<BaseResponse<Group>> GetAsync(Expression<Func<GroupModel.Group, bool>> expression);
-        Task<BaseResponse<IEnumerable<Group>>> GetAllAsync(PaginationParams @params, Expression<Func<Group, bool>> expression = null);
+        Task<BaseResponse<GroupModel.Group>> CreateAsync(GroupForCreationDto GroupDto);
+        Task<BaseResponse<GroupModel.Group>> GetAsync(Expression<Func<GroupModel.Group, bool>> expression);
+        Task<BaseResponse<IEnumerable<GroupModel.Group>>> GetAllAsync(PaginationParams @params, Expression<Func<Group, bool>> expression = null);
         Task<BaseResponse<bool>> DeleteAsync(Expression<Func<GroupModel.Group, bool>> expression);
         Task<BaseResponse<Group>> UpdateAsync(long id, GroupForCreationDto GroupDto);
     }

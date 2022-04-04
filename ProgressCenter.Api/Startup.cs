@@ -1,5 +1,6 @@
  using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using ProgressCenter.Api.Extensions;
 using ProgressCenter.Data.Contexts;
+using ProgressCenter.Service.Helpers;
 using ProgressCenter.Service.Mappers;
 using System;
 using System.Collections.Generic;
@@ -59,9 +61,16 @@ namespace ProgressCenter.Api
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ProgressCenter.Api v1"));
             }
 
+            if (app.ApplicationServices.GetService<IHttpContextAccessor>() != null)
+            {
+                HttpContextHelper.Accessor = app.ApplicationServices.GetRequiredService<IHttpContextAccessor>();
+            }
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseStaticFiles();
 
             app.UseAuthorization();
 
@@ -70,17 +79,6 @@ namespace ProgressCenter.Api
                 endpoints.MapControllers();
             });
 
-            // Add static files to the request pipeline.
-            app.UseStaticFiles(new StaticFileOptions()
-            {
-                OnPrepareResponse = (context) =>
-                {
-                    // Disable caching of all static files.
-                    context.Context.Response.Headers["Cache-Control"] = "no-cache, no-store";
-                    context.Context.Response.Headers["Pragma"] = "no-cache";
-                    context.Context.Response.Headers["Expires"] = "-1";
-                }
-            });
         }
     }
 }

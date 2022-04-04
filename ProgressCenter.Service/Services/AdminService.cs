@@ -12,6 +12,7 @@ using ProgressCenter.Service.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
@@ -86,9 +87,9 @@ namespace ProgressCenter.Service.Services
 
             var response = new BaseResponse<IEnumerable<Admin>>();
 
-            var students = unitOfWork.Admins.GetAll(expression);
+            IEnumerable<Admin> admins = unitOfWork.Admins.GetAll(expression);
 
-            response.Data = students.ToPagedList(@params);
+            response.Data = admins.ToPagedList(@params);
 
             return response;
         }
