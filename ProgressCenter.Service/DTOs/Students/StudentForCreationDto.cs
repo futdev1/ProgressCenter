@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -29,7 +30,7 @@ namespace ProgressCenter.Service.DTOs.Students
         [Required]
         public string Password { get; set; }
 
-        public string Image { get; set; }
+        public FormFile Image { get; set; }
 
         [Required]
         public long GroupId { get; set; }

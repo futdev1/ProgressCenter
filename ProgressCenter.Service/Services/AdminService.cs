@@ -98,14 +98,14 @@ namespace ProgressCenter.Service.Services
         {
             var response = new BaseResponse<Admin>();
 
-            var student = await unitOfWork.Admins.GetAsync(expression);
-            if (student is null)
+            var admin = await unitOfWork.Admins.GetAsync(expression);
+            if (admin is null)
             {
                 response.Error = new ErrorResponse(404, "User not found");
                 return response;
             }
 
-            response.Data = student;
+            response.Data = admin;
 
             return response;
         }
