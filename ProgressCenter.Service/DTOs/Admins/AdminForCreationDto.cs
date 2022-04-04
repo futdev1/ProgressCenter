@@ -29,7 +29,6 @@ namespace ProgressCenter.Service.DTOs.Admins
         [Required]
         public string Password { get; set; }
 
-        [Required]
         public IFormFile Image { get; set; }
     }
 }
