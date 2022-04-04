@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using ProgressCenter.Data.Contexts;
@@ -9,9 +10,10 @@ using ProgressCenter.Data.Contexts;
 namespace ProgressCenter.Data.Migrations
 {
     [DbContext(typeof(ProgressCenterDbContext))]
-    partial class ProgressCenterDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220404050625_ThirdMigration")]
+    partial class ThirdMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -10,7 +10,7 @@ namespace ProgressCenter.Domain.Entities.Courses
 
         public string Name { get; set; }
 
-        public DateTime PeriodOfDuration { get; set; }
+        public string PeriodOfDuration { get; set; }
 
         public DateTime CreatedAt { get; set; }
         
