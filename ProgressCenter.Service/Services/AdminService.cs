@@ -24,7 +24,8 @@ namespace ProgressCenter.Service.Services
         private readonly IMapper mapper;
         private readonly IConfiguration config;
         private readonly IWebHostEnvironment env;
-
+        
+        
         public AdminService(IUnitOfWork unitOfWork, IMapper mapper, IWebHostEnvironment env, IConfiguration config)
         {
             this.unitOfWork = unitOfWork;
@@ -33,22 +34,28 @@ namespace ProgressCenter.Service.Services
             this.config = config;
         }
 
+        /// <summary>
+        /// service management for adding data to the database
+        /// </summary>
+        /// <param name="adminDto"></param>
+        /// <returns></returns>
         public async Task<BaseResponse<Admin>> CreateAsync(AdminForCreationDto adminDto)
         {
-            var response = new BaseResponse<Admin>();
+            BaseResponse<Admin> response = new BaseResponse<Admin>();
 
-            var existStudent = await unitOfWork.Admins.GetAsync(p => p.Login == adminDto.Login);
+            Admin existStudent = await unitOfWork.Admins.GetAsync(p => p.Login == adminDto.Login);
+            
             if (existStudent is not null)
             {
                 response.Error = new ErrorResponse(400, "User is exist");
                 return response;
             }
 
-            var mappedAdmin = mapper.Map<Admin>(adminDto);
+            Admin mappedAdmin = mapper.Map<Admin>(adminDto);
 
             mappedAdmin.Image = await SaveFileAsync(adminDto.Image.OpenReadStream(), adminDto.Image.FileName);
 
-            var result = await unitOfWork.Admins.CreateAsync(mappedAdmin);
+            Admin result = await unitOfWork.Admins.CreateAsync(mappedAdmin);
 
             result.Image = "https://localhost:5001/Images/" + result.Image;
 
@@ -59,12 +66,17 @@ namespace ProgressCenter.Service.Services
             return response;
         }
 
+        /// <summary>
+        /// service management for deleting data from the database
+        /// </summary>
+        /// <param name="expression"></param>
+        /// <returns></returns>
         public async Task<BaseResponse<bool>> DeleteAsync(Expression<Func<Admin, bool>> expression)
         {
-            var response = new BaseResponse<bool>();
+            BaseResponse<bool> response = new BaseResponse<bool>();
 
             // check for exist student
-            var existAdmin = await unitOfWork.Admins.GetAsync(expression);
+            Admin existAdmin = await unitOfWork.Admins.GetAsync(expression);
             if (existAdmin is null)
             {
                 response.Error = new ErrorResponse(404, "User not found");
@@ -72,7 +84,7 @@ namespace ProgressCenter.Service.Services
             }
             existAdmin.Delete();
 
-            var result = unitOfWork.Admins.UpdateAsync(existAdmin);
+            Admin result = unitOfWork.Admins.UpdateAsync(existAdmin);
 
             await unitOfWork.SaveChangesAsync();
 
@@ -80,12 +92,19 @@ namespace ProgressCenter.Service.Services
 
             return response;
         }
-
+        
+        /// <summary>
+        /// this service manages the work for the get all method
+        /// that is, from the base
+        /// </summary>
+        /// <param name="params"></param>
+        /// <param name="expression"></param>
+        /// <returns></returns>
         public BaseResponse<IEnumerable<Admin>> GetAll(PaginationParams @params, Expression<Func<Admin, bool>> expression = null)
         {
             string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
-            var response = new BaseResponse<IEnumerable<Admin>>();
+            BaseResponse<IEnumerable<Admin>> response = new BaseResponse<IEnumerable<Admin>>();
 
             IEnumerable<Admin> admins = unitOfWork.Admins.GetAll(expression);
 
@@ -94,11 +113,17 @@ namespace ProgressCenter.Service.Services
             return response;
         }
 
+        /// <summary>
+        /// management department for database retrieval services
+        /// </summary>
+        /// <param name="expression"></param>
+        /// <returns></returns>
         public async Task<BaseResponse<Admin>> GetAsync(Expression<Func<Admin, bool>> expression)
         {
-            var response = new BaseResponse<Admin>();
+            BaseResponse<Admin> response = new BaseResponse<Admin>();
 
-            var admin = await unitOfWork.Admins.GetAsync(expression);
+            Admin admin = await unitOfWork.Admins.GetAsync(expression);
+            
             if (admin is null)
             {
                 response.Error = new ErrorResponse(404, "User not found");
@@ -110,6 +135,12 @@ namespace ProgressCenter.Service.Services
             return response;
         }
 
+        /// <summary>
+        /// services management department to receive information related to the byte category
+        /// </summary>
+        /// <param name="file"></param>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
         public async Task<string> SaveFileAsync(Stream file, string fileName)
         {
             fileName = Guid.NewGuid().ToString("N") + "_" + fileName;
@@ -122,6 +153,13 @@ namespace ProgressCenter.Service.Services
             return fileName;
         }
 
+        /// <summary>
+        /// service management department to change the information in the database
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="adminDto"></param>
+        /// <returns></returns>
         public async Task<BaseResponse<Admin>> UpdateAsync(long id, AdminForCreationDto adminDto)
         {
             var response = new BaseResponse<Admin>();

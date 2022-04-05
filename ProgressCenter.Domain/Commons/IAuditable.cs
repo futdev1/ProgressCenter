@@ -14,5 +14,11 @@ namespace ProgressCenter.Domain.Commons
         public long? UpdatedBy { get; set; }
 
         ItemState State { get; set; }
+
+        void Create();
+
+        void Update();
+
+        void Delete();
     }
 }
