@@ -4,16 +4,13 @@ using Microsoft.Extensions.Configuration;
 using ProgressCenter.Data.IRepositories;
 using ProgressCenter.Domain.Commons;
 using ProgressCenter.Domain.Configurations;
-using ProgressCenter.Domain.Entities.Courses;
 using ProgressCenter.Domain.Enums;
 using ProgressCenter.Service.DTOs.Groups;
 using ProgressCenter.Service.Extensions;
 using ProgressCenter.Service.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using GroupModel = ProgressCenter.Domain.Entities.Groups;
@@ -79,8 +76,6 @@ namespace ProgressCenter.Service.Services
 
         public BaseResponse<IEnumerable<GroupModel.Group>> GetAll(PaginationParams @params, Expression<Func<Group, bool>> expression = null)
         {
-            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-
             var response = new BaseResponse<IEnumerable<GroupModel.Group>>();
 
             IEnumerable<GroupModel.Group> group = unitOfWork.Groups.GetAll();

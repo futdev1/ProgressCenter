@@ -4,9 +4,7 @@ using ProgressCenter.Domain.Entities.Courses;
 using ProgressCenter.Service.DTOs.Courses;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ProgressCenter.Service.Interfaces

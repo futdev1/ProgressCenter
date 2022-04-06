@@ -8,6 +8,7 @@ namespace ProgressCenter.Service.Extensions
 {
     public static class CollectionExtensions
     {
+        //method to retrieve data from the database in pagination view
         public static IEnumerable<T> ToPagedList<T>(this IEnumerable<T> source, PaginationParams @params)
         {
             var metaData = new PaginationMetaData(source.Count(), @params);

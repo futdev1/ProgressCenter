@@ -12,7 +12,6 @@ using ProgressCenter.Service.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
@@ -24,8 +23,8 @@ namespace ProgressCenter.Service.Services
         private readonly IMapper mapper;
         private readonly IConfiguration config;
         private readonly IWebHostEnvironment env;
-        
-        
+
+
         public AdminService(IUnitOfWork unitOfWork, IMapper mapper, IWebHostEnvironment env, IConfiguration config)
         {
             this.unitOfWork = unitOfWork;
@@ -44,7 +43,7 @@ namespace ProgressCenter.Service.Services
             BaseResponse<Admin> response = new BaseResponse<Admin>();
 
             Admin existStudent = await unitOfWork.Admins.GetAsync(p => p.Login == adminDto.Login);
-            
+
             if (existStudent is not null)
             {
                 response.Error = new ErrorResponse(400, "User is exist");
@@ -92,7 +91,7 @@ namespace ProgressCenter.Service.Services
 
             return response;
         }
-        
+
         /// <summary>
         /// this service manages the work for the get all method
         /// that is, from the base
@@ -123,7 +122,7 @@ namespace ProgressCenter.Service.Services
             BaseResponse<Admin> response = new BaseResponse<Admin>();
 
             Admin admin = await unitOfWork.Admins.GetAsync(expression);
-            
+
             if (admin is null)
             {
                 response.Error = new ErrorResponse(404, "User not found");

@@ -12,9 +12,7 @@ using ProgressCenter.Service.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ProgressCenter.Service.Services
@@ -143,9 +141,12 @@ namespace ProgressCenter.Service.Services
 
         public async Task<string> SaveFileAsync(Stream file, string fileName)
         {
+            //
             fileName = Guid.NewGuid().ToString("N") + "_" + fileName;
             string storagePath = config.GetSection("Storage:ImageUrl").Value;
             string filePath = Path.Combine(env.WebRootPath, $"{storagePath}/{fileName}");
+
+            //
             FileStream mainFile = File.Create(filePath);
             await file.CopyToAsync(mainFile);
             mainFile.Close();

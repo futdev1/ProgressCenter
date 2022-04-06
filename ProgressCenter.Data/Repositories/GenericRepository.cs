@@ -5,7 +5,6 @@ using Serilog;
 using System;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ProgressCenter.Data.Repositories
@@ -14,7 +13,7 @@ namespace ProgressCenter.Data.Repositories
     {
         internal readonly ProgressCenterDbContext dbContext;
         internal readonly DbSet<T> dbSet;
-        internal readonly ILogger logger;   
+        internal readonly ILogger logger;
 
         public GenericRepository(ProgressCenterDbContext dbContext, ILogger logger)
         {

@@ -5,9 +5,7 @@ using ProgressCenter.Domain.Configurations;
 using ProgressCenter.Domain.Enums;
 using ProgressCenter.Service.DTOs.Groups;
 using ProgressCenter.Service.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using GroupModel = ProgressCenter.Domain.Entities.Groups;
 

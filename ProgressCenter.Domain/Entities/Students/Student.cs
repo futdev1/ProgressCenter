@@ -29,9 +29,9 @@ namespace ProgressCenter.Domain.Entities.Students
         public DateTime CreatedAt { get; set; }
 
         public DateTime? UpdatedAt { get; set; }
-        
+
         public long? UpdatedBy { get; set; }
-        
+
         public ItemState State { get; set; }
 
         public void Create()

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ProgressCenter.Data.IRepositories
 {
-    public interface IGenericRepository<T> where T : class 
+    public interface IGenericRepository<T> where T : class
     {
         /// <summary>
         /// adds information to the database

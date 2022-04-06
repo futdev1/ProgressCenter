@@ -41,19 +41,19 @@ namespace ProgressCenter.Data.Repositories
                 ).CreateLogger();
 
             Admins = new AdminRepository(dbContext, logger);
-            
+
             Courses = new CourseRepository(dbContext, logger);
-            
+
             Groups = new GroupRepository(dbContext, logger);
-            
+
             Students = new StudentRepository(dbContext, logger);
-            
+
             Teachers = new TeacherRepository(dbContext, logger);
         }
-            
+
         public void Dispose()
         {
-            GC.SuppressFinalize(this);  
+            GC.SuppressFinalize(this);
         }
 
         public async Task SaveChangesAsync()

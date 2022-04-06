@@ -4,7 +4,6 @@ using Microsoft.Extensions.Configuration;
 using ProgressCenter.Data.IRepositories;
 using ProgressCenter.Domain.Commons;
 using ProgressCenter.Domain.Configurations;
-using ProgressCenter.Domain.Entities.Admins;
 using ProgressCenter.Domain.Entities.Courses;
 using ProgressCenter.Domain.Enums;
 using ProgressCenter.Service.DTOs.Courses;
@@ -12,9 +11,7 @@ using ProgressCenter.Service.Extensions;
 using ProgressCenter.Service.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ProgressCenter.Service.Services

@@ -17,11 +17,11 @@ namespace ProgressCenter.Domain.Entities.Groups
         public long TeacherId { get; set; }
 
         public DateTime CreatedAt { get; set; }
-        
+
         public DateTime? UpdatedAt { get; set; }
-        
+
         public long? UpdatedBy { get; set; }
-        
+
         public ItemState State { get; set; }
 
         public void Create()

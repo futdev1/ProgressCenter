@@ -3,7 +3,6 @@ using ProgressCenter.Domain.Entities.Admins;
 using ProgressCenter.Domain.Entities.Courses;
 using ProgressCenter.Domain.Entities.Students;
 using ProgressCenter.Domain.Entities.Teachers;
-using System.Text.RegularExpressions;
 
 namespace ProgressCenter.Data.Contexts
 {

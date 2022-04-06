@@ -18,7 +18,7 @@ namespace ProgressCenter.Service.Mappers
             CreateMap<AdminForCreationDto, Admin>().ReverseMap();
             CreateMap<GroupForCreationDto, ProgressCenter.Domain.Entities.Groups.Group>().ReverseMap();
             CreateMap<StudentForCreationDto, Student>().ReverseMap();
-            CreateMap<TeacherForCreationDto, Teacher>().ReverseMap(); 
+            CreateMap<TeacherForCreationDto, Teacher>().ReverseMap();
             CreateMap<CourseForCreationDto, Course>().ReverseMap();
         }
     }

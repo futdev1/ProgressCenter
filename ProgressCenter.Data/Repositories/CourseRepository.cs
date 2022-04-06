@@ -5,7 +5,7 @@ using Serilog;
 
 namespace ProgressCenter.Data.Repositories
 {
-    public class CourseRepository : GenericRepository<Course>, ICourseRepository 
+    public class CourseRepository : GenericRepository<Course>, ICourseRepository
     {
         public CourseRepository(ProgressCenterDbContext dbContext, ILogger logger) : base(dbContext, logger) { }
     }
